@@ -1,0 +1,61 @@
+1)
+kd4_akshada_83535>select onum,snum,amt,(amt*0.12) 'commision commission' from ORDERS;
++------+------+---------+----------------------+
+| onum | snum | amt     | commision commission |
++------+------+---------+----------------------+
+| 3001 | 1007 |   18.69 |                 2.24 |
+| 3003 | 1001 |  767.19 |                92.06 |
+| 3002 | 1004 | 1900.10 |               228.01 |
+| 3005 | 1002 | 5160.45 |               619.25 |
+| 3006 | 1007 | 1098.16 |               131.78 |
+| 3009 | 1003 | 1713.23 |               205.59 |
+| 3007 | 1002 |   75.75 |                 9.09 |
+| 3008 | 1001 | 4723.00 |               566.76 |
+| 3010 | 1002 | 1309.95 |               157.19 |
+| 3011 | 1001 | 9891.88 |              1187.03 |
++------+------+---------+-----------------------
+
+
+2)
+kd4_akshada_83535>select city 'for the city',max(rating) 'the highest rating is' from CUSTOMERS group by city;
++--------------+-----------------------+
+| for the city | the highest rating is |
++--------------+-----------------------+
+| london       |                   100 |
+| rome         |                   200 |
+| san jose     |                   300 |
+| berlin       |                   300 |
+| landon       |                   100 |
++--------------+-----------------------+
+
+
+3)
+kd4_akshada_83535>select rating,cname,cnum from CUSTOMERS order by rating desc;
++--------+----------+------+
+| rating | cname    | cnum |
++--------+----------+------+
+|    300 | grass    | 2004 |
+|    300 | cisneros | 2008 |
+|    200 | giovanni | 2002 |
+|    200 | liu      | 2003 |
+|    100 | hoffman  | 2001 |
+|    100 | clemens  | 2006 |
+|    100 | pereira  | 2007 |
++--------+----------+------+
+
+
+
+4)
+kd4_akshada_83535>select count(onum) 'count of orders',odate from ORDERS group by odate order by count(onum) desc;
++-----------------+------------+
+| count of orders | odate      |
++-----------------+------------+
+|               5 | 1990-10-03 |
+|               2 | 1990-10-04 |
+|               2 | 1990-10-06 |
+|               1 | 1990-10-05 |
++-----------------+------------+
+
+
+
+

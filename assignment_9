@@ -1,0 +1,71 @@
+1)
+kd4_akshada_83535>select cname,onum from ORDERS,CUSTOMERS where ORDERS.cnum=CUSTOMERS.cnum;
++----------+------+
+| cname    | onum |
++----------+------+
+| cisneros | 3001 |
+| hoffman  | 3003 |
+| pereira  | 3002 |
+| liu      | 3005 |
+| cisneros | 3006 |
+| giovanni | 3009 |
+| grass    | 3007 |
+| clemens  | 3008 |
+| grass    | 3010 |
+| clemens  | 3011 |
++----------+------+
+10 rows in set (0.03 sec)
+
+
+2)
+kd4_akshada_83535>select sname,cname,onum from ORDERS,CUSTOMERS,SALESPEOPLE where ORDERS.snum=CUSTOMERS.snum AND CUSTOMERS.snum=SALESPEOPLE.snum;
++---------+----------+------+
+| sname   | cname    | onum |
++---------+----------+------+
+| Rifkin  | cisneros | 3001 |
+| Peel    | clemens  | 3003 |
+| Peel    | hoffman  | 3003 |
+| Motika  | pereira  | 3002 |
+| Serres  | grass    | 3005 |
+| Serres  | liu      | 3005 |
+| Rifkin  | cisneros | 3006 |
+| Axelrod | giovanni | 3009 |
+| Serres  | grass    | 3007 |
+| Serres  | liu      | 3007 |
+| Peel    | clemens  | 3008 |
+| Peel    | hoffman  | 3008 |
+| Serres  | grass    | 3010 |
+| Serres  | liu      | 3010 |
+| Peel    | clemens  | 3011 |
+| Peel    | hoffman  | 3011 |
++---------+----------+------+
+16 rows in set (0.03 sec)
+
+
+3)
+kd4_akshada_83535>select cname,sname,comm "rate of intrest." from CUSTOMERS,SALESPEOPLE where SALESPEOPLE.snum=CUSTOMERS.snum AND comm>0.12;
++----------+--------+------------------+
+| cname    | sname  | rate of intrest. |
++----------+--------+------------------+
+| liu      | Serres |             0.13 |
+| grass    | Serres |             0.13 |
+| cisneros | Rifkin |             0.15 |
++----------+--------+------------------+
+3 rows in set (0.00 sec)
+
+
+4)
+kd4_akshada_83535>select amt*comm 'art of commission',onum from ORDERS join CUSTOMERS on ORDERS.cnum=CUSTOMERS.cnum join SALESPEOPLE on ORDERS.snum=SALESPEOPLE.snum where CUSTOMERS.rating>100;
++-------------------+------+
+| art of commission | onum |
++-------------------+------+
+|            170.29 | 3010 |
+|              9.85 | 3007 |
+|            670.86 | 3005 |
+|            164.72 | 3006 |
+|              2.80 | 3001 |
+|            171.32 | 3009 |
++-------------------+------+
+6 rows in set (0.00 sec)
+
+

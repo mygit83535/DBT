@@ -1,0 +1,22 @@
+1)
+kd4_akshada_83535>select m.sname,n.sname,m.city from SALESPEOPLE m,SALESPEOPLE n where m.city=n.city AND m.sname<n.sname;
++--------+-------+--------+
+| sname  | sname | city   |
++--------+-------+--------+
+| Motika | Peel  | London |
++--------+-------+--------+
+1 row in set (0.00 sec)
+
+
+2)
+kd4_akshada_83535>select cname,city from CUSTOMERS where rating=(select rating from CUSTOMERS where cname='hoffman');
++---------+--------+
+| cname   | city   |
++---------+--------+
+| hoffman | london |
+| clemens | landon |
+| pereira | rome   |
++---------+--------+
+3 rows in set (0.01 sec)
+
+

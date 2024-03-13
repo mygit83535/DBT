@@ -1,0 +1,70 @@
+1)
+kd4_akshada_83535>select count(*) from ORDERS where odate='1990-10-03';
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.00 sec)
+
+
+2)
+d4_akshada_83535> select count(city) from CUSTOMERS where city is not null;
++-------------+
+| count(city) |
++-------------+
+|           7 |
++-------------+
+1 row in set (0.00 sec)
+
+
+3)
+kd4_akshada_83535>select cnum, min(amt) from ORDERS group by cnum;
++------+----------+
+| cnum | min(amt) |
++------+----------+
+| 2008 |    18.69 |
+| 2001 |   767.19 |
+| 2007 |  1900.10 |
+| 2003 |  5160.45 |
+| 2002 |  1713.23 |
+| 2004 |    75.75 |
+| 2006 |  4723.00 |
++------+----------+
+7 rows in set (0.00 sec)
+
+
+4)
+kd4_akshada_83535>select min(cname) from  CUSTOMERS where cname like 'G%';
++------------+
+| min(cname) |
++------------+
+| giovanni   |
++------------+
+1 row in set (0.00 sec)
+
+
+
+5)
+KD4_akshada_83535>select  max(rating) 'Highest rating', City from CUSTOMERS group by City;
++----------------+----------+
+| Highest rating | City     |
++----------------+----------+
+|            100 | London   |
+|            300 | San Jose |
+|            300 | Berlin   |
+|            200 | Rome     |
++----------------+----------+
+4 rows in set (0.00 sec)
+
+6)
+KD4_akshada_83535>select count(distint snum)'salespeople regesteried',odate from ORDERS group by odate;
++-------------------------+------------+
+| selespeople regesteried | odate      |
++-------------------------+------------+
+|                       5 | 1990-10-03 |
+|                       2 | 1990-10-04 |
+|                       1 | 1990-10-05 |
+|                       2 | 1990-10-06 |
++-------------------------+------------+
+
