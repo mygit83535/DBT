@@ -1,0 +1,44 @@
+1)
+kd4_akshada_83535>select Cname,City,case when Rating <200 then 'LOW RATING' end 'Rating' from CUSTOMERS where Rating<200
+    -> union
+    -> select Cname,City,case when Rating>=200 then 'HIGH RATING' end from CUSTOMERS where Rating>=200;
++----------+----------+-------------+
+| Cname    | City     | Rating      |
++----------+----------+-------------+
+| Hoffman  | London   | LOW RATING  |
+| Clemens  | London   | LOW RATING  |
+| Pereira  | Rome     | LOW RATING  |
+| Giovanni | Rome     | HIGH RATING |
+| Liu      | San Jose | HIGH RATING |
+| Grass    | Berlin   | HIGH RATING |
+| Cisneros | San Jose | HIGH RATING |
++----------+----------+-------------+
+
+2)
+kd4_akshada_83535>select Cname,Cnum from CUSTOMERS where Cnum =any(select Cnum from ORDERS group by Cnum having count(Cnum)>1) UNION select Sname,Snum from SALESPEOPLE where Snum =any(select Snum from ORDERS group by Snum having count(Snum)>1) ORDER BY Cname;
++----------+------+
+| Cname    | Cnum |
++----------+------+
+| Cisneros | 2008 |
+| Clemens  | 2006 |
+| Grass    | 2004 |
+| Peel     | 1001 |
+| Rifkin   | 1007 |
+| Serres   | 1002 |
++----------+------+
+
+3)
+kd4_akshada_83535>select Snum from SALESPEOPLE where City = 'San Jose' union select Cnum from CUSTOMERS where City='San Jose' union select Onum from ORDERS WHERE Odate = '1990-10-03';
++------+
+| Snum |
++------+
+| 1002 |
+| 2003 |
+| 2008 |
+| 3001 |
+| 3003 |
+| 3002 |
+| 3005 |
+| 3006 |
++------+
+
