@@ -1,0 +1,194 @@
+1)sudo apt-get install gnupg curl
+
+
+
+
+2)curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor
+   
+   
+   
+   
+   
+3)echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+
+
+
+
+
+
+
+4)sudo systemctl start mongod
+
+
+
+
+5)
+mongosh
+Current Mongosh Log ID:	65f56f10e60af5f431db83af
+Connecting to:		mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.0
+Using MongoDB:		7.0.6
+Using Mongosh:		2.2.0
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-03-16T14:17:59.762+05:30: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2024-03-16T14:18:02.283+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2024-03-16T14:18:02.284+05:30: vm.max_map_count is too low
+------
+
+
+
+6)
+test> show databases;
+admin   40.00 KiB
+config  72.00 KiB
+local   72.00 KiB
+
+
+
+7)
+test> use cdac
+switched to db cdac
+
+
+
+8)
+cdac> show collections;
+library
+cdac> 
+
+
+9)
+cdac> db.createCollection("library")
+{ ok: 1 }
+
+
+
+10)
+cdac> db.library.insert({title:'mongodb programing',author:'sameer',likes:10})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('65f5659cd0672abc25db83b0') }
+}
+
+
+
+11)
+cdac> db.library.find()
+[
+  {
+    _id: ObjectId('65f5659cd0672abc25db83b0'),
+    title: 'mongodb programing',
+    author: 'sameer',
+    likes: 10
+  }
+
+
+12)
+cdac> db.library.insert({title:'MySQL programming',authors:['jack','jill'],likes:200})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('65f566e3d0672abc25db83b1') }
+}
+
+
+
+13)
+cdac> db.library.find()
+[
+  {
+    _id: ObjectId('65f5659cd0672abc25db83b0'),
+    title: 'mongodb programing',
+    author: 'sameer',
+    likes: 10
+  },
+  {
+    _id: ObjectId('65f566e3d0672abc25db83b1'),
+    title: 'MySQL programming',
+    authors: [ 'jack', 'jill' ],
+    likes: 200
+  }
+]
+
+
+
+14)
+cdac> db.library.findOne()
+{
+  _id: ObjectId('65f5659cd0672abc25db83b0'),
+  title: 'mongodb programing',
+  author: 'sameer',
+  likes: 10
+}
+
+
+
+15)
+cdac> db.library.find().pretty()
+[
+  {
+    _id: ObjectId('65f5659cd0672abc25db83b0'),
+    title: 'mongodb programing',
+    author: 'sameer',
+    likes: 10
+  },
+  {
+    _id: ObjectId('65f566e3d0672abc25db83b1'),
+    title: 'MySQL programming',
+    authors: [ 'jack', 'jill' ],
+    likes: 200
+  }
+]
+
+
+
+16)
+cdac> db.library.update({author:'sameer'},{$set:{author:'sameer dehadrai'}})
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 
+  
+}  
+
+
+
+
+17)
+cdac> db.library.remove({like:100})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 0 }
+cdac> 
+
+
+18)
+cdac> db.createCollection("library")
+{ ok: 1 }
+
+
+
+
+19)
+cdac> db.dropDatabase()
+{ ok: 1, dropped: 'cdac' }
+
+
+
+20)
+cdac> db.dropDatabase()
+{ ok: 1, dropped: 'cdac' }
+cdac> exit
+
+
+
+21)
+ctrl+c
